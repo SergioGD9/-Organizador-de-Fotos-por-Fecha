@@ -15,7 +15,7 @@ import re
 import shutil
 
 # Configura la ruta al directorio donde están las fotos.
-path_to_photos = 'tu/ruta/de/archivos'
+path_to_photos = r"C:\Users\sergi\Pictures\fotos y videos"
 
 # Cambia al directorio de las fotos.
 os.chdir(path_to_photos)
@@ -29,13 +29,23 @@ for file in files:
     if match:
         # Construye una cadena con la fecha.
         year, _, month, _, day = match.groups()
-        date_folder = f"{year}-{month}-{day}"
+        
+        # Define las carpetas de año y mes.
+        year_folder = f"{year}"
+        month_folder = f"{month}"
 
-        # Crea un directorio con la fecha como nombre si no existe.
-        if not os.path.exists(date_folder):
-            os.mkdir(date_folder)
+        # Crea un directorio para el año si no existe.
+        if not os.path.exists(year_folder):
+            os.mkdir(year_folder)
+
+        # Construye la ruta al directorio del mes dentro del año.
+        month_directory_path = os.path.join(year_folder, month_folder)
+
+        # Crea un directorio para el mes si no existe.
+        if not os.path.exists(month_directory_path):
+            os.mkdir(month_directory_path)
 
         # Mueve el archivo a la carpeta correspondiente.
-        shutil.move(file, os.path.join(date_folder, file))
+        shutil.move(file, os.path.join(month_directory_path, file))
 
-print("Organización de fotos por fecha completada.")
+print("Organización de fotos por año y mes completada.")
