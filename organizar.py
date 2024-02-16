@@ -15,7 +15,7 @@ import re
 import shutil
 
 # Configura la ruta al directorio donde están las fotos.
-path_to_photos = r"C:\Users\sergi\Pictures\fotos y videos"
+path_to_photos = "tu/ruta/a/tus/archivos"
 
 # Cambia al directorio de las fotos.
 os.chdir(path_to_photos)
